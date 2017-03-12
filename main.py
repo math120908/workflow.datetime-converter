@@ -66,7 +66,6 @@ def main(wf):
 				uid=dt_format,
 			)
 
-	print >>sys.stderr, wf.alfred_env
 	if len(wf._items) == 0:
 		wf.add_item(
 			title=u'Invalid input',
