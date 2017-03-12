@@ -2,7 +2,7 @@ import sys
 import os
 import re
 import subprocess
-from workflow import Workflow
+from workflow import Workflow3
 
 DATE_BIN = '/usr/local/opt/coreutils/libexec/gnubin/date'
 
@@ -77,5 +77,5 @@ def main(wf):
 
 
 if __name__ == '__main__':
-	wf = Workflow()
+	wf = Workflow3()
 	sys.exit(wf.run(main))

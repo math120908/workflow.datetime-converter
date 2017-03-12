@@ -2,7 +2,7 @@ import os
 import sys
 import datetime
 import pytz
-from workflow import Workflow
+from workflow import Workflow3
 
 
 def get_offset_str(timezone):
@@ -37,5 +37,5 @@ def main(wf):
 	wf.send_feedback()
 
 if __name__ == '__main__':
-	wf = Workflow()
+	wf = Workflow3()
 	sys.exit(wf.run(main))
