@@ -24,6 +24,8 @@ FORMATS = [
 def get_datetime(dt_format, input):
 	if not input:
 		input = 'now'
+	if input.isdigit():
+		input = "@" + input
 	command = "%s \"%s\" --date=\"%s\"" % (DATE_BIN, dt_format, input)
 	return [i.strip() for i in subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()]
 
