@@ -3,6 +3,7 @@ import os
 import re
 import subprocess
 from workflow import Workflow3
+from timezone import get_timezone
 
 DATE_BIN = '/usr/local/opt/coreutils/libexec/gnubin/date'
 
@@ -18,15 +19,17 @@ FORMATS = [
 	"+%Y-%m-%dT%H:%M:%S",
 	# 1996-12-19T16:39:57-0800
 	"+%Y-%m-%dT%H:%M:%S%z",
+	"+%Y-%m-%d %H:%M:%S %Z",
 ]
 
 
-def get_datetime(dt_format, input):
+def get_datetime(wf, dt_format, input):
 	if not input:
 		input = 'now'
 	if input.isdigit():
 		input = "@" + input
-	command = "%s \"%s\" --date=\"%s\"" % (DATE_BIN, dt_format, input)
+	timezone, tzoffset = get_timezone(wf)
+	command = "TZ=%s %s \"%s\" --date=\"%s\"" % (timezone, DATE_BIN, dt_format, input)
 	return [i.strip() for i in subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()]
 
 
@@ -55,7 +58,7 @@ def main(wf):
 
 	if is_valid_input(input_str):
 		for dt_format in FORMATS:
-			formating_dt_str, err_msg = get_datetime(dt_format, input_str)
+			formating_dt_str, err_msg = get_datetime(wf, dt_format, input_str)
 			if err_msg:
 				break
 			wf.add_item(

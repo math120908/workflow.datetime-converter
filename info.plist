@@ -8,6 +8,29 @@
 	<string>Tools</string>
 	<key>connections</key>
 	<dict>
+		<key>4A0D7DE9-2E5C-4521-A8E0-9EF0F7592F26</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A83D1190-E04E-4802-ABBF-556CF6D72D21</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>3A87E4D3-2ACA-4313-8AA5-294CC066C13E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>E986330E-1F8D-402D-BD7D-C55192BCCB4E</key>
 		<array>
 			<dict>
@@ -32,23 +55,6 @@
 	<string>Datetime Converter</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>5451F909-51AE-4B9F-94DF-5275EDD762F3</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -95,6 +101,46 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>5451F909-51AE-4B9F-94DF-5275EDD762F3</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>python timezone.py --set-timezone "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A83D1190-E04E-4802-ABBF-556CF6D72D21</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>argumenttype</key>
@@ -120,7 +166,7 @@
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string></string>
+				<string>{var:timezone}</string>
 				<key>title</key>
 				<string>Enter timezone</string>
 				<key>type</key>
@@ -135,17 +181,45 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>Set timezone to {query}</string>
+				<key>title</key>
+				<string>Dateime Converter</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>3A87E4D3-2ACA-4313-8AA5-294CC066C13E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>3A87E4D3-2ACA-4313-8AA5-294CC066C13E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>530</integer>
+			<key>ypos</key>
+			<integer>340</integer>
+		</dict>
 		<key>4A0D7DE9-2E5C-4521-A8E0-9EF0F7592F26</key>
 		<dict>
 			<key>xpos</key>
-			<integer>140</integer>
+			<integer>120</integer>
 			<key>ypos</key>
-			<integer>220</integer>
+			<integer>210</integer>
 		</dict>
 		<key>5451F909-51AE-4B9F-94DF-5275EDD762F3</key>
 		<dict>
@@ -153,6 +227,13 @@
 			<integer>440</integer>
 			<key>ypos</key>
 			<integer>70</integer>
+		</dict>
+		<key>A83D1190-E04E-4802-ABBF-556CF6D72D21</key>
+		<dict>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>200</integer>
 		</dict>
 		<key>E986330E-1F8D-402D-BD7D-C55192BCCB4E</key>
 		<dict>
