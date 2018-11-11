@@ -24,15 +24,29 @@ FORMATS = [
 	"+%Y-%m-%d %H:%M:%S %Z",
 ]
 
-
-def get_datetime(wf, dt_format, input):
-	if not input:
-		input = 'now'
-	if input.isdigit():
-		input = "@" + input
-	timezone, tzoffset = get_timezone(wf)
-	command = "TZ=%s %s \"%s\" --date=\"%s\"" % (timezone, DATE_BIN, dt_format, input)
+def exec_cmd(timezone, from_format="now", to_format=""):
+	command = "TZ={tz} {command} {to_format} --date={from_format}".format(
+		tz=timezone,
+		command=DATE_BIN,
+		to_format=to_format,
+		from_format=from_format,
+	)
 	return [i.strip() for i in subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()]
+
+def get_datetime(wf, dt_format, input_str):
+	timezone, tzoffset = get_timezone(wf)
+	input_str = input_str and input_str.strip() or 'now'
+
+	if input_str.isdigit():
+	    input_str = "@{}".format(input_str)
+
+	rc = re.findall(r'^(@\d+)(\s.*){0,1}', input_str)
+	if rc:
+		timestamp, successor = rc[0]
+		rc, _ = exec_cmd(timezone, '"{}"'.format(timestamp))
+		input_str = "{} {}".format(rc, successor)
+
+	return exec_cmd(timezone, repr(input_str), repr(dt_format))
 
 
 def check_datetime_bin():
