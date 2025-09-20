@@ -18,9 +18,14 @@ import re
 import socket
 import string
 import unicodedata
-import urllib
-import urllib2
-import urlparse
+try:
+    import urllib2
+    import urlparse
+    import urllib as urllib_parse
+except ImportError:
+    import urllib.request as urllib2
+    import urllib.parse as urlparse
+    import urllib.parse as urllib_parse
 import zlib
 
 
